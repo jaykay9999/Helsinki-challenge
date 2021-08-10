@@ -4,6 +4,7 @@ import sys
 import argparse
 import os
 import fnmatch
+from OCR_evaluation import *
 
 
 
@@ -28,6 +29,10 @@ listOfFiles = os.listdir(input_folder)
 
 if not os.path.exists(output_folder):
 	os.makedirs(output_folder)
+	
+	
+avg_score = 0
+total = 0
 
 for filename in listOfFiles:
 	# might be later a function to split :
@@ -38,5 +43,10 @@ for filename in listOfFiles:
 
 	if fnmatch.fnmatch(filename,pattern): # we do not want to have the text files
 		original = Image.open(input_folder+'/'+filename) # load image
+		score = evaluateImage(original, trueText)
+		print(score)
+		avg_score +=score
+		total +=1
 		original.save(output_folder + '/' + extract_filename[0] + '.png', format="png") #save it to the output folder
 
+print("avg score is : " + str(avg_score/total))
