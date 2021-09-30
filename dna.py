@@ -23,8 +23,8 @@ def deblur(my_filter , my_bias , blurry_image):
     #all_blurry.append(blurry_image1[300 : 600 , 250:2100])
     blurry_image1 = np.array(blurry_image)
     blurry_image2 = []
-    x =33
-    y = 33
+    x =13
+    y = 13
     for i in range(len(blurry_image1)-y):
         blurry_image2x = []
         #print(str((i/(len(blurry_image1)-y))*100) +" %" )
@@ -70,10 +70,10 @@ class dna(object):
         self.fitness = 0
         self.blurry_image = blurry_image
         self.real_image = real_image
-        for i in range (33):
+        for i in range (13):
             genes_x = []
             bias_x = []
-            for j in range(33):
+            for j in range(13):
                 genes_x.append(new_weight())
                 bias_x.append(new_bias())
             self.genes.append(genes_x)
@@ -89,7 +89,7 @@ class dna(object):
         #my_filter_sum = np.sum(my_filter)
         #my_filter = my_filter/my_filter_sum
         #deblurred_image = cv2.filter2D(np.array(self.blurry_image) , -1 , my_filter)
-        compared_real_image =  crop_image(33 , 33 , self.real_image)
+        compared_real_image =  crop_image(13 , 13 , self.real_image)
         result = comparison(deblurred_image , compared_real_image)
         #print(result)
         fitness = 1 / result
@@ -100,8 +100,8 @@ class dna(object):
 
     def crossover(self , partner):
         child = dna(self.blurry_image , self.real_image)
-        midpoint = random.randint(1,33)
-        for i in range(0 , 32):
+        midpoint = random.randint(1,13)
+        for i in range(0 , 12):
             if(i > midpoint):
                 child.genes[i] = self.genes[i]
             else:
@@ -110,8 +110,8 @@ class dna(object):
 
 
     def mutate(self , mutation_rate):
-        for i in range(33):
-            for j in range (33):
+        for i in range(13):
+            for j in range (13):
                 k = random.random()
                 if(k < mutation_rate):
                     self.genes[i][j] = new_weight()
