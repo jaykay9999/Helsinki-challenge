@@ -4,9 +4,21 @@ Requirements libraies:
   -Keras
   -OpenCv
   -Matplotlib
-  -argparse
-  -PIL
-  -pytesseract
-  -fuzzywuzzy
-  
-First the user should run the functions.py file. Second run the DeblurAlgo.py file to train the model which is created with Conv2D layers. Those layers crates a convolution kernel that is convolved with layers input to produce a tensor of outputs. For the final step the user run the main.py file to conver all the images into png type to test it with OCR_evaluation.py file. 
+  -random
+ 
+ 
+ When you run the main file, the program will try to find the best kernel weights and bias to deblur that specific image compared to a random non blurry image using the genetic algorithm. 
+ 
+ after some run time, the program should be able to find the best 13x13 kernel for that blurry image from the input folder path then use that filter on the blurry image and save it in the ouput folder.
+ 
+ for this program :
+ 
+ the population size = 10
+ 
+ mutation rate = 0.01
+ 
+ and it will run for 5 generations.
+ 
+ 
+ these values can be changed for better outputs but we believe that these are the best for such large images.
+ 
